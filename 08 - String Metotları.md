@@ -1,0 +1,85 @@
+## STRING İŞLEMLERİ
+
+- String değişkenler, hafızada 10 byte yer kaplar ( 0 ile 2 milyar karakter arası )
+- String ve StringBuilder sınıflarından faydalanabiliriz.
+
+### String Sınıfı Metodları
+- ToString
+    - Belirtilen bir değişken türünü stringe çevirmek için kullanılır.
+- Copy
+    - String kopyalama için kullanılır.
+    - `string yeniString = string.Copy(eskiString);`
+- Concat
+    - Birden fazla stringi birleştirmek için kullanılır.
+    - `string yeni = string.Concat(str1, str2);`
+- Empty
+    - String’in içini boşaltmak için kullanılır.
+    - `string bos = string.Empty;`
+- Compare
+    - İki stringi karşılaştırmak için kullanılır.
+    - Strinleri sıralayarak int türünde sonuç verir
+        - -1 	-> 1. String daha önce gelir
+        - 0 	-> Stringler eşit
+        - 1	    -> 2. String daha önce gelir.
+    - 3. Parametre olarak karşılaştırma seçenekleri belirtilebilir.
+    - `int deger = string.Compare(str1, str2);`
+- Split
+    - String ifadeyi bir char karakterine göre parçalara bölmek için kullanılır.
+    - Birden fazla char verilip, her karakterde ayırım yapılması sağlanabilir.
+    - `string[] ayrilmis = str3.Split('.');`
+    - Boş değerlerin göz ardı edilmesi isteniyorsa, ikinci parametre olarak options girilebilir
+    - `string[] ayrilmis = str3.Split( new char[]{'.', ','}, StringSplitOptions.RemoveEmptyEntries);`
+- IndexOf, IndexOf	, LastIndexOf, LastIndexOfAny
+    - Belirli bir karakter veya karakter dizisini string içinde arar ve ilk bulduğu yerin konumunu int değer olarak döndürür.
+    - Last ile başlayanlar sondan arama yapar.
+    - Any ile bitenler birden fazla char ararken, diğerleri tek bir char için arama yapar.
+    - Sonuç bulunamazsa -1 döner.
+    - `int deger = str3.IndexOf('e');`
+    - `int deger = str3.IndexOfAny(new char[] { 'e', 'a' });`
+- SubString
+    - Bir metnin içinden belirli bir yeri almak için kullanılır.
+    - Kullanımı : SubString( Başlangıç Pozisyonu, Uzunluk )
+    - Uzunluk, limiti aşarsa hata verir.
+    - Start Index sıfırdan küçük olamaz.
+- ToUpper ve ToLower
+    - String ifadenin harflerini küçültmek ve büyültmek için kullanılır.
+    - İngilizce karakterler, türkçe karakterler gibi dönüştürüleceğinden buna dikkat edilmelidir.
+    - İngilizce dönüşüm için şu metodlar kullanılabilir.
+        - ToUpperInvariant
+        - ToLowerInvariant
+- PadLeft ve PadRight
+    - String ifadenin soluna ve sağına belirli karakterleri eklemek için kullanılır.
+    - İlk verilen parametre, string ifadenin en son alması istenen toplam uzunluktur.
+    - İkinci parametre olarak eklenecek char verilebilir, verilmezse boşluk ekler.
+    - `string yeni = str1.PadLeft(10, '-').PadRight(14, '.');`
+
+### StringBuilder Sınıfı
+- StringBuilder sınıfı, string sınıfına göre daha performanslıdır. Bunun nedeni ;
+    - String oluşturulduktan sonra üzerine ekleme yapılamaz. Yeni bir ekleme yapmak istediğimiz zaman, eskisi silinip yeni bir string oluşturulur.
+    - StringBuilder ise bunu yapmaz, eskisinin üzerine yeniyi ekleyebilir.
+    - Bu nedenle daha performanslıdır.
+- Length
+    - SB içindeki string değerin uzunluğunu verir.
+- Capacity
+    - SB içinde saklanabilecek max değeri verir.
+    - SB oluşturulurken, içindeki stringe göre 2’nin kuvveti bir alan açılır. Daha sonra ekleme yapıldıkça bu alan yetersiz kaldığı durumda iki katına çıkarılarak yeniden kapasite düzenlemesi yapılır.
+    - Kapasite manual olarak da atanabilir.
+- EnsureCapacity
+    - Manuel kapasite değeri atamak için kullanılır.
+- Append ve AppendLine
+    - SB içine ekleme yapmak için kullanılır.
+    - AppendLine kullanıldığında, satır sonu karakteri ile birlikte eklenir.
+- AppendFormat
+    - String eklemesi yapılırken çeşitli formatlara göre ekleme yapılması sağlanır.
+    - `sb.AppendFormat("{0:hh:mm:ss}", DateTime.Now);`
+- Insert
+    - Append metodu sona eklerken bu metod ile istediğimiz bir yere istediğimiz kadar ekleme yapabiliriz.
+    - Kullanımı : `sb.Insert( index numarası, veri, adet )`
+- Remove
+    - SB içinde belirli bir yeri silmek için kullanılır.
+    - Kullanımı : `sb.Remove( başlangıç, uzunluk )`
+- Replace
+    - Bir veriyi başka bir veri ile değiştirmek için kullanılır.
+    - Kullanımı : `sb.Replace ( eski değer, yeni değer, başlangıç index, adet )`
+- Clear	
+    - Tüm karakterleri siler.
